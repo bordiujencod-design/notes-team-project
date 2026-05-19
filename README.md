@@ -1,4 +1,4 @@
-# Notes App
+# Notes App Android
 
 ## Team Members
 
@@ -8,7 +8,7 @@
 
 ## Project Idea
 
-Notes App este o aplicatie web simpla pentru crearea, vizualizarea si sortarea notitelor. Utilizatorul poate adauga o notita cu titlu si continut, apoi poate sorta lista dupa cele mai noi, cele mai vechi sau alfabetic.
+Notes App este o aplicatie Android simpla pentru crearea, vizualizarea si sortarea notitelor. Utilizatorul poate adauga o notita cu titlu si continut, apoi poate sorta lista dupa cele mai noi, cele mai vechi sau alfabetic.
 
 ## Motivation
 
@@ -20,7 +20,7 @@ Aplicatia ajuta utilizatorii sa pastreze rapid idei, sarcini sau informatii impo
 - Afisarea listei de notite
 - Sortarea notitelor dupa data sau titlu
 - Stergerea unei notite
-- Salvarea notitelor in browser folosind localStorage
+- Salvarea notitelor local in aplicatie folosind SharedPreferences
 
 ## How to Run
 
@@ -30,15 +30,18 @@ Aplicatia ajuta utilizatorii sa pastreze rapid idei, sarcini sau informatii impo
 git clone <repo-url>
 ```
 
-2. Intra in folderul proiectului:
+2. Deschide proiectul in Android Studio:
 
-```bash
-cd notes-team-project
-```
+- Android Studio
+- File
+- Open
+- Selecteaza folderul `notes-team-project`
 
-3. Deschide fisierul `index.html` in browser.
+3. Asteapta sincronizarea Gradle.
 
-Nu este necesara instalarea unor dependinte.
+4. Porneste aplicatia pe emulator sau pe telefon cu butonul Run.
+
+Proiectul este o aplicatie Android nativa in Java.
 
 ## Daniel's Contribution
 
@@ -49,4 +52,3 @@ Bordiujenco Daniel este responsabil pentru:
 - Verificarea ca aplicatia goala porneste corect
 - Integrarea functionalitatilor realizate de colegi
 - Rezolvarea conflictelor simple aparute la merge
-
