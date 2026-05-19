@@ -6,12 +6,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,111 +41,30 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         preferences = getSharedPreferences(STORAGE_NAME, MODE_PRIVATE);
         loadNotes();
-        buildLayout();
+        setContentView(R.layout.activity_main);
+        bindViews();
         renderNotes();
     }
 
-    private void buildLayout() {
-        ScrollView scrollView = new ScrollView(this);
-        LinearLayout root = new LinearLayout(this);
-        root.setOrientation(LinearLayout.VERTICAL);
-        root.setPadding(dp(20), dp(24), dp(20), dp(24));
-        root.setBackgroundColor(Color.rgb(246, 247, 249));
-        scrollView.addView(root);
+    private void bindViews() {
+        titleInput = findViewById(R.id.titleInput);
+        bodyInput = findViewById(R.id.bodyInput);
+        sortSpinner = findViewById(R.id.sortSpinner);
+        notesContainer = findViewById(R.id.notesContainer);
 
-        TextView title = new TextView(this);
-        title.setText("Notes App");
-        title.setTextSize(30);
-        title.setTextColor(Color.rgb(31, 41, 55));
-        title.setGravity(Gravity.START);
-        title.setTypeface(null, 1);
-        root.addView(title);
-
-        TextView subtitle = new TextView(this);
-        subtitle.setText("Organizeaza notitele echipei intr-un singur loc.");
-        subtitle.setTextSize(16);
-        subtitle.setTextColor(Color.rgb(102, 112, 133));
-        subtitle.setPadding(0, dp(6), 0, dp(18));
-        root.addView(subtitle);
-
-        TextView sortLabel = label("Sortare");
-        root.addView(sortLabel);
-
-        sortSpinner = new Spinner(this);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_spinner_item,
-                new String[]{"Cele mai noi", "Cele mai vechi", "Titlu A-Z"}
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sortSpinner.setAdapter(adapter);
-        sortSpinner.setPadding(0, 0, 0, dp(12));
-        sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        Button addButton = findViewById(R.id.addButton);
+        addButton.setOnClickListener(view -> addNote());
+        sortSpinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
                 renderNotes();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onNothingSelected(android.widget.AdapterView<?> parent) {
                 renderNotes();
             }
         });
-        root.addView(sortSpinner);
-
-        titleInput = input("Titlu");
-        root.addView(label("Titlu"));
-        root.addView(titleInput);
-
-        bodyInput = input("Continut");
-        bodyInput.setMinLines(4);
-        bodyInput.setGravity(Gravity.TOP);
-        root.addView(label("Continut"));
-        root.addView(bodyInput);
-
-        Button addButton = new Button(this);
-        addButton.setText("Adauga");
-        addButton.setAllCaps(false);
-        addButton.setOnClickListener(view -> addNote());
-        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        buttonParams.setMargins(0, dp(12), 0, dp(22));
-        root.addView(addButton, buttonParams);
-
-        TextView notesTitle = new TextView(this);
-        notesTitle.setText("Notite");
-        notesTitle.setTextSize(22);
-        notesTitle.setTypeface(null, 1);
-        notesTitle.setTextColor(Color.rgb(31, 41, 55));
-        root.addView(notesTitle);
-
-        notesContainer = new LinearLayout(this);
-        notesContainer.setOrientation(LinearLayout.VERTICAL);
-        notesContainer.setPadding(0, dp(12), 0, 0);
-        root.addView(notesContainer);
-
-        setContentView(scrollView);
-    }
-
-    private TextView label(String text) {
-        TextView label = new TextView(this);
-        label.setText(text);
-        label.setTextSize(14);
-        label.setTypeface(null, 1);
-        label.setTextColor(Color.rgb(52, 64, 84));
-        label.setPadding(0, dp(10), 0, dp(6));
-        return label;
-    }
-
-    private EditText input(String hint) {
-        EditText input = new EditText(this);
-        input.setHint(hint);
-        input.setTextSize(16);
-        input.setSingleLine(false);
-        input.setPadding(dp(12), dp(8), dp(12), dp(8));
-        return input;
     }
 
     private void addNote() {
@@ -191,7 +107,7 @@ public class MainActivity extends Activity {
             LinearLayout card = new LinearLayout(this);
             card.setOrientation(LinearLayout.VERTICAL);
             card.setPadding(dp(14), dp(12), dp(14), dp(12));
-            card.setBackgroundColor(Color.WHITE);
+            card.setBackgroundResource(R.drawable.note_card_background);
 
             LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
@@ -304,4 +220,3 @@ public class MainActivity extends Activity {
         }
     }
 }
-

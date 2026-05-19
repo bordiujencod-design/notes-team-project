@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Team Notes</string>
+    <string name="app_title">Team Notes</string>
+    <string name="app_subtitle">Organizeaza notitele echipei intr-un singur loc.</string>
+    <string name="sort_label">Sortare</string>
+    <string name="title_label">Titlu</string>
+    <string name="title_hint">Scrie titlul notitei</string>
+    <string name="body_label">Continut</string>
+    <string name="body_hint">Scrie continutul notitei</string>
+    <string name="add_note">Adauga notita</string>
+    <string name="notes_title">Notite</string>
+    <string-array name="sort_options">
+        <item>Cele mai noi</item>
+        <item>Cele mai vechi</item>
+        <item>Titlu A-Z</item>
+    </string-array>
 </resources>
